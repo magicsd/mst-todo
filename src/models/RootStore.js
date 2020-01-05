@@ -8,7 +8,11 @@ const RootStore = types.model({
 }).actions(self => ({
   addTodo(id, name) {
     self.todos.set(id, Todo.create({ id, name }))
-  }
+  },
+
+  removeTodo(id) {
+    self.todos.delete(id)
+  },
 }))
 
 export default RootStore

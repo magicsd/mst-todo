@@ -40,6 +40,7 @@ function App() {
               onChange={({ target: { value } }) => todo.setName(value)}
             />
             <input type="checkbox" checked={todo.isDone} onChange={() => { todo.toggle() }} />
+            <button onClick={() => { store.removeTodo(todo.id) }}>Remove</button>
           </div>
         ))}
         <form onSubmit={handleSubmit}>
