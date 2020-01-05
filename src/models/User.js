@@ -1,5 +1,7 @@
 import { types } from 'mobx-state-tree'
 
 const User = types.model({
-  name: '',
+  name: types.optional(types.string, ''),
 })
+
+export default User
