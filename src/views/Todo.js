@@ -1,31 +1,18 @@
-import React, { useRef } from 'react';
+import React from 'react'
 import { observer } from 'mobx-react'
-import TodoList from './TodoList';
+import TodoList from './TodoList'
+import CreateForm from './CreateForm'
 
-const Todo = ({ store }) => {
-  const inputRef = useRef()
-  
-  const handleSubmit = e => {
-    e.preventDefault()
-    const { value } = inputRef.current
-    if (!value.trim()) return
-
-    store.addTodo(Math.floor(Math.random() * 1000), value.trim())
-    e.target.reset()
-    inputRef.current.focus()
-  }
-
-  return (
-    <div className="App-body">
-      <TodoList store={store} />
-      <form onSubmit={handleSubmit}>
-        <label>
-          Create todo: <input ref={inputRef} type="text" placeholder="Type..." />
-        </label>
-        <button type="submit">Add</button>
-      </form>
-    </div>
-  )
-}
+const Todo = ({ store }) => (
+  <div className='App-body'>
+    <CreateForm store={store} />
+    {store.totalCount > 0 ? (
+      <p>You have {store.doneCount} of {store.totalCount} tasks done.</p>
+    ) : (
+      <p>Let's create some tasks to do!</p>
+    )}
+    <TodoList store={store} />
+  </div>
+)
 
 export default observer(Todo)
